@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://agapeconnect.me/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://agapeconnect.me/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://agapeconnect.me/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestWhiteList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WhilstList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestWhiteListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestWhiteListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFinanicialTransactions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApiKey" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueBatRef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ledger" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Transactions" type="tns:ArrayOfFinancialTransaction" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFinancialTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FinancialTransaction" type="tns:FinancialTransaction" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FinancialTransaction">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UniqueTRXRef" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Account" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RC" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrxDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="optionalCalendarMonth" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="optionalCalendarYear" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransactionId_READONLY" nillable="true" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddFinanicialTransactionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddFinanicialTransactionsResult" type="tns:TrxResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TrxResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddDonationBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApiKey" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueRef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Donations" type="tns:ArrayOfDonation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDonation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Donation" type="tns:Donation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Donation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Donor" type="tns:Donor" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="GiftDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="GlobalDonorcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DesigId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentProcessor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaymentProcessorTrxId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IBAN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="VCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Other" type="tns:ArrayOfProp" />
+          <s:element minOccurs="0" maxOccurs="1" name="UniqueDonationRef" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Donor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DonorId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpouseFirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpouseMiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StreetAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobilePhone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Phone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Other" type="tns:ArrayOfProp" />
+          <s:element minOccurs="0" maxOccurs="1" name="UniqueDonorRef" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProp">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Prop" type="tns:Prop" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Prop">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddDonationBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDonationBatchResult" type="tns:TrxResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDonation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApiKey" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueRef" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DonorId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Donations" type="tns:ArrayOfDonation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddDonationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddDonationResult" type="tns:TrxResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatusOfBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueBatRef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatusOfBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetStatusOfBatchResult" type="tns:TrxResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UndoBatch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApiKey" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UniqueBatRef" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UndoBatchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UndoBatchResult" type="tns:TrxResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestWhiteListSoapIn">
+    <wsdl:part name="parameters" element="tns:TestWhiteList" />
+  </wsdl:message>
+  <wsdl:message name="TestWhiteListSoapOut">
+    <wsdl:part name="parameters" element="tns:TestWhiteListResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddFinanicialTransactionsSoapIn">
+    <wsdl:part name="parameters" element="tns:AddFinanicialTransactions" />
+  </wsdl:message>
+  <wsdl:message name="AddFinanicialTransactionsSoapOut">
+    <wsdl:part name="parameters" element="tns:AddFinanicialTransactionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDonationBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDonationBatch" />
+  </wsdl:message>
+  <wsdl:message name="AddDonationBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDonationBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddDonationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddDonation" />
+  </wsdl:message>
+  <wsdl:message name="AddDonationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddDonationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusOfBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatusOfBatch" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusOfBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatusOfBatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="UndoBatchSoapIn">
+    <wsdl:part name="parameters" element="tns:UndoBatch" />
+  </wsdl:message>
+  <wsdl:message name="UndoBatchSoapOut">
+    <wsdl:part name="parameters" element="tns:UndoBatchResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FCX_APISoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestWhiteList">
+      <wsdl:input message="tns:TestWhiteListSoapIn" />
+      <wsdl:output message="tns:TestWhiteListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFinanicialTransactions">
+      <wsdl:input message="tns:AddFinanicialTransactionsSoapIn" />
+      <wsdl:output message="tns:AddFinanicialTransactionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDonationBatch">
+      <wsdl:input message="tns:AddDonationBatchSoapIn" />
+      <wsdl:output message="tns:AddDonationBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddDonation">
+      <wsdl:input message="tns:AddDonationSoapIn" />
+      <wsdl:output message="tns:AddDonationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusOfBatch">
+      <wsdl:input message="tns:GetStatusOfBatchSoapIn" />
+      <wsdl:output message="tns:GetStatusOfBatchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UndoBatch">
+      <wsdl:input message="tns:UndoBatchSoapIn" />
+      <wsdl:output message="tns:UndoBatchSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FCX_APISoap" type="tns:FCX_APISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://agapeconnect.me/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestWhiteList">
+      <soap:operation soapAction="http://agapeconnect.me/TestWhiteList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFinanicialTransactions">
+      <soap:operation soapAction="http://agapeconnect.me/AddFinanicialTransactions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDonationBatch">
+      <soap:operation soapAction="http://agapeconnect.me/AddDonationBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDonation">
+      <soap:operation soapAction="http://agapeconnect.me/AddDonation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusOfBatch">
+      <soap:operation soapAction="http://agapeconnect.me/GetStatusOfBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndoBatch">
+      <soap:operation soapAction="http://agapeconnect.me/UndoBatch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FCX_APISoap12" type="tns:FCX_APISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://agapeconnect.me/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestWhiteList">
+      <soap12:operation soapAction="http://agapeconnect.me/TestWhiteList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFinanicialTransactions">
+      <soap12:operation soapAction="http://agapeconnect.me/AddFinanicialTransactions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDonationBatch">
+      <soap12:operation soapAction="http://agapeconnect.me/AddDonationBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDonation">
+      <soap12:operation soapAction="http://agapeconnect.me/AddDonation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusOfBatch">
+      <soap12:operation soapAction="http://agapeconnect.me/GetStatusOfBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndoBatch">
+      <soap12:operation soapAction="http://agapeconnect.me/UndoBatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FCX_API">
+    <wsdl:port name="FCX_APISoap" binding="tns:FCX_APISoap">
+      <soap:address location="http://localhost:37881/FCX/FCX-API.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FCX_APISoap12" binding="tns:FCX_APISoap12">
+      <soap12:address location="http://localhost:37881/FCX/FCX-API.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

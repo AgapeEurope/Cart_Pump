@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AgapeConnect" Class="DonationDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=WIN-UN1L241MDMF\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True" SettingsObjectName="Cart_Pump.My.MySettings" SettingsPropertyName="AgapeConnectConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.FR_Cart" Member="FR_Carts">
+    <Type Name="FR_Cart">
+      <Column Name="CartID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AnonID" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="PayMethod" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="TransLog" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MerchantFee" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CreditFee" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UserComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="StaffComments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="OrderState" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="ShipCost" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DeliveryInst" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ShipAddressBookID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ShipCompany" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShipReference" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreditNote" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ShipVAT" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="BillAddressBookID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="FR_Cart_FR_Cart_Content" Member="FR_Cart_Contents" ThisKey="CartID" OtherKey="CartID" Type="FR_Cart_Content" />
+      <Association Name="User_FR_Cart" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Give_DonationType" Member="Agape_Give_DonationTypes">
+    <Type Name="Agape_Give_DonationType">
+      <Column Name="DonationTypeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DonationTypeName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DonationTypeNumber" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Visible" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FR_Donations" Member="FR_Donations">
+    <Type Name="FR_Donation">
+      <Column Name="DonationID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CartContentID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DestinationType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DestinationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BatchID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="FR_Cart_Content_FR_Donation" Member="FR_Cart_Content" ThisKey="CartContentID" OtherKey="CartContentID" Type="FR_Cart_Content" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FR_Cart_Content" Member="FR_Cart_Contents">
+    <Type Name="FR_Cart_Content">
+      <Column Name="CartContentID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CartID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ItemType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="ItemRef" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Tax" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DiscountAmt" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="DiscountPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Dispatchable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Details" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="FR_Cart_Content_FR_Donation" Member="FR_Donations" ThisKey="CartContentID" OtherKey="CartContentID" Type="FR_Donation" />
+      <Association Name="FR_Cart_FR_Cart_Content" Member="FR_Cart" ThisKey="CartID" OtherKey="CartID" Type="FR_Cart" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_Staff" Member="AP_StaffBroker_Staffs">
+    <Type Name="AP_StaffBroker_Staff">
+      <Column Name="StaffId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CostCenter" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="StaffTypeId" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="UserId1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserId2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_Staff_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffProfiles" ThisKey="StaffId" OtherKey="StaffId" Type="AP_StaffBroker_StaffProfile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_Departments" Member="AP_StaffBroker_Departments">
+    <Type Name="AP_StaffBroker_Department">
+      <Column Name="CostCenterId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="CostCentre" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CostCentreManager" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CostCentreDelegate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CanRmb" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanCharge" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CanGiveTo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="GivingText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="GivingShortcut" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PayType" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsProject" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PhotoId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Spare1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Spare2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Spare3" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffProfiles">
+    <Type Name="AP_StaffBroker_StaffProfile">
+      <Column Name="StaffProfileId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PropertyValue" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="StaffPropertyDefinitionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StaffId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="AP_StaffBroker_Staff_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_Staff" ThisKey="StaffId" OtherKey="StaffId" Type="AP_StaffBroker_Staff" IsForeignKey="true" />
+      <Association Name="AP_StaffBroker_StaffPropertyDefinition_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffPropertyDefinition" ThisKey="StaffPropertyDefinitionId" OtherKey="StaffPropertyDefinitionId" Type="AP_StaffBroker_StaffPropertyDefinition" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_StaffPropertyDefinition" Member="AP_StaffBroker_StaffPropertyDefinitions">
+    <Type Name="AP_StaffBroker_StaffPropertyDefinition">
+      <Column Name="StaffPropertyDefinitionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Display" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PropertyHelp" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Type" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="FixedFieldName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="AP_StaffBroker_StaffPropertyDefinition_AP_StaffBroker_StaffProfile" Member="AP_StaffBroker_StaffProfiles" ThisKey="StaffPropertyDefinitionId" OtherKey="StaffPropertyDefinitionId" Type="AP_StaffBroker_StaffProfile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsSuperUser" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AffiliateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="DisplayName" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdatePassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastIPAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IsDeleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_FR_Cart" Member="FR_Carts" ThisKey="UserID" OtherKey="UserID" Type="FR_Cart" Cardinality="One" />
+      <Association Name="User_UserProfile" Member="UserProfiles" ThisKey="UserID" OtherKey="UserID" Type="UserProfile" />
+      <Association Name="User_Agape_Give_BankTransfer" Member="Agape_Give_BankTransfers" ThisKey="UserID" OtherKey="DonorId" Type="Agape_Give_BankTransfer" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserProfile" Member="UserProfiles">
+    <Type Name="UserProfile">
+      <Column Name="ProfileID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyDefinitionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyValue" Type="System.String" DbType="NVarChar(3750)" CanBeNull="true" />
+      <Column Name="PropertyText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Visibility" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastUpdatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ExtendedVisibility" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Association Name="User_UserProfile" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ProfilePropertyDefinition_UserProfile" Member="ProfilePropertyDefinition" ThisKey="PropertyDefinitionID" OtherKey="PropertyDefinitionID" Type="ProfilePropertyDefinition" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProfilePropertyDefinition" Member="ProfilePropertyDefinitions">
+    <Type Name="ProfilePropertyDefinition">
+      <Column Name="PropertyDefinitionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PortalID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModuleDefID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Deleted" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DataType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultValue" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PropertyCategory" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PropertyName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Required" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ValidationExpression" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="ViewOrder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Visible" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CreatedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastModifiedByUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LastModifiedOnDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DefaultVisibility" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReadOnly" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ProfilePropertyDefinition_UserProfile" Member="UserProfiles" ThisKey="PropertyDefinitionID" OtherKey="PropertyDefinitionID" Type="UserProfile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Agape_Give_BankTransfer" Member="Agape_Give_BankTransfers">
+    <Type Name="Agape_Give_BankTransfer">
+      <Column Name="VirId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DonorId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BankName" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="BankStreet1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="BankStreet2" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="BankPostal" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="acNo" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Frequency" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Amount" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="BankCity" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="GiveMessage" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Reference" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="DonationType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="TypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SetupDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GiveMethod" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Association Name="User_Agape_Give_BankTransfer" Member="User" ThisKey="DonorId" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AP_StaffBroker_Settings" Member="AP_StaffBroker_Settings">
+    <Type Name="AP_StaffBroker_Setting">
+      <Column Name="SettingId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SettingName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SettingValue" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="PortalId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
