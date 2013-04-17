@@ -402,10 +402,10 @@
   </wsdl:binding>
   <wsdl:service name="FCX_API">
     <wsdl:port name="FCX_APISoap" binding="tns:FCX_APISoap">
-      <soap:address location="http://localhost:37881/FCX/FCX-API.asmx" />
+      <soap:address location="http://localhost:37879/FCX/FCX-API.asmx" />
     </wsdl:port>
     <wsdl:port name="FCX_APISoap12" binding="tns:FCX_APISoap12">
-      <soap12:address location="http://localhost:37881/FCX/FCX-API.asmx" />
+      <soap12:address location="http://localhost:37879/FCX/FCX-API.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

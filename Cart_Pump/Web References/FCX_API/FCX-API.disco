@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
-  <contractRef ref="http://localhost:37881/FCX/FCX-API.asmx?wsdl" docRef="http://localhost:37881/FCX/FCX-API.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
-  <soap address="http://localhost:37881/FCX/FCX-API.asmx" xmlns:q1="http://agapeconnect.me/" binding="q1:FCX_APISoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
-  <soap address="http://localhost:37881/FCX/FCX-API.asmx" xmlns:q2="http://agapeconnect.me/" binding="q2:FCX_APISoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <contractRef ref="http://localhost:37879/FCX/FCX-API.asmx?wsdl" docRef="http://localhost:37879/FCX/FCX-API.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://localhost:37879/FCX/FCX-API.asmx" xmlns:q1="http://agapeconnect.me/" binding="q1:FCX_APISoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://localhost:37879/FCX/FCX-API.asmx" xmlns:q2="http://agapeconnect.me/" binding="q2:FCX_APISoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
 </discovery>

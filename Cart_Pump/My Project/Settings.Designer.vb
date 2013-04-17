@@ -56,22 +56,22 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("http://localhost:37881/FCX/FCX-API.asmx")>  _
-        Public ReadOnly Property Cart_Pump_FCX_API_FCX_API() As String
-            Get
-                Return CType(Me("Cart_Pump_FCX_API_FCX_API"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Data Source=WIN-UN1L241MDMF\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Se"& _ 
             "curity=True")>  _
         Public ReadOnly Property AgapeConnectConnectionString() As String
             Get
                 Return CType(Me("AgapeConnectConnectionString"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.WebServiceUrl),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://localhost:37879/FCX/FCX-API.asmx")>  _
+        Public ReadOnly Property Cart_Pump_FCX_API_FCX_API() As String
+            Get
+                Return CType(Me("Cart_Pump_FCX_API_FCX_API"),String)
             End Get
         End Property
     End Class

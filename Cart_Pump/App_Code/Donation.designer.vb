@@ -3784,14 +3784,6 @@ Partial Public Class Agape_Give_BankTransfer
 	
 	Private _DonorId As System.Nullable(Of Integer)
 	
-	Private _BankName As String
-	
-	Private _BankStreet1 As String
-	
-	Private _BankStreet2 As String
-	
-	Private _BankPostal As String
-	
 	Private _acNo As String
 	
 	Private _Frequency As System.Nullable(Of Short)
@@ -3799,8 +3791,6 @@ Partial Public Class Agape_Give_BankTransfer
 	Private _StartDate As System.Nullable(Of Date)
 	
 	Private _Amount As System.Nullable(Of Short)
-	
-	Private _BankCity As String
 	
 	Private _GiveMessage As String
 	
@@ -3833,22 +3823,6 @@ Partial Public Class Agape_Give_BankTransfer
     End Sub
     Partial Private Sub OnDonorIdChanged()
     End Sub
-    Partial Private Sub OnBankNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnBankNameChanged()
-    End Sub
-    Partial Private Sub OnBankStreet1Changing(value As String)
-    End Sub
-    Partial Private Sub OnBankStreet1Changed()
-    End Sub
-    Partial Private Sub OnBankStreet2Changing(value As String)
-    End Sub
-    Partial Private Sub OnBankStreet2Changed()
-    End Sub
-    Partial Private Sub OnBankPostalChanging(value As String)
-    End Sub
-    Partial Private Sub OnBankPostalChanged()
-    End Sub
     Partial Private Sub OnacNoChanging(value As String)
     End Sub
     Partial Private Sub OnacNoChanged()
@@ -3864,10 +3838,6 @@ Partial Public Class Agape_Give_BankTransfer
     Partial Private Sub OnAmountChanging(value As System.Nullable(Of Short))
     End Sub
     Partial Private Sub OnAmountChanged()
-    End Sub
-    Partial Private Sub OnBankCityChanging(value As String)
-    End Sub
-    Partial Private Sub OnBankCityChanged()
     End Sub
     Partial Private Sub OnGiveMessageChanging(value As String)
     End Sub
@@ -3941,70 +3911,6 @@ Partial Public Class Agape_Give_BankTransfer
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankName", DbType:="NVarChar(300)")>  _
-	Public Property BankName() As String
-		Get
-			Return Me._BankName
-		End Get
-		Set
-			If (String.Equals(Me._BankName, value) = false) Then
-				Me.OnBankNameChanging(value)
-				Me.SendPropertyChanging
-				Me._BankName = value
-				Me.SendPropertyChanged("BankName")
-				Me.OnBankNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankStreet1", DbType:="NVarChar(200)")>  _
-	Public Property BankStreet1() As String
-		Get
-			Return Me._BankStreet1
-		End Get
-		Set
-			If (String.Equals(Me._BankStreet1, value) = false) Then
-				Me.OnBankStreet1Changing(value)
-				Me.SendPropertyChanging
-				Me._BankStreet1 = value
-				Me.SendPropertyChanged("BankStreet1")
-				Me.OnBankStreet1Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankStreet2", DbType:="NVarChar(200)")>  _
-	Public Property BankStreet2() As String
-		Get
-			Return Me._BankStreet2
-		End Get
-		Set
-			If (String.Equals(Me._BankStreet2, value) = false) Then
-				Me.OnBankStreet2Changing(value)
-				Me.SendPropertyChanging
-				Me._BankStreet2 = value
-				Me.SendPropertyChanged("BankStreet2")
-				Me.OnBankStreet2Changed
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankPostal", DbType:="NVarChar(10)")>  _
-	Public Property BankPostal() As String
-		Get
-			Return Me._BankPostal
-		End Get
-		Set
-			If (String.Equals(Me._BankPostal, value) = false) Then
-				Me.OnBankPostalChanging(value)
-				Me.SendPropertyChanging
-				Me._BankPostal = value
-				Me.SendPropertyChanged("BankPostal")
-				Me.OnBankPostalChanged
-			End If
-		End Set
-	End Property
-	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_acNo", DbType:="NVarChar(100)")>  _
 	Public Property acNo() As String
 		Get
@@ -4065,22 +3971,6 @@ Partial Public Class Agape_Give_BankTransfer
 				Me._Amount = value
 				Me.SendPropertyChanged("Amount")
 				Me.OnAmountChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankCity", DbType:="NVarChar(200)")>  _
-	Public Property BankCity() As String
-		Get
-			Return Me._BankCity
-		End Get
-		Set
-			If (String.Equals(Me._BankCity, value) = false) Then
-				Me.OnBankCityChanging(value)
-				Me.SendPropertyChanging
-				Me._BankCity = value
-				Me.SendPropertyChanged("BankCity")
-				Me.OnBankCityChanged
 			End If
 		End Set
 	End Property

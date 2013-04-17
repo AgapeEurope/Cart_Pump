@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
   <Settings>
-    <Setting Name="Cart_Pump_FCX_API_FCX_API" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:37881/FCX/FCX-API.asmx</Value>
-    </Setting>
     <Setting Name="AgapeConnectConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
@@ -12,6 +9,9 @@
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=WIN-UN1L241MDMF\SQLEXPRESS;Initial Catalog=AgapeConnect;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="Cart_Pump_FCX_API_FCX_API" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:37879/FCX/FCX-API.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -38,13 +38,18 @@ End Module
 
 Module Module1
     Dim api As New FCX_API.FCX_API()
-    Dim api_key = New System.Guid("401fe9e6-00c5-4198-ad59-0dd30c64304e")
+    Dim api_key = New System.Guid()
+
+
     Sub Main()
+        api.Url = "http://dev.agapefrance.org/FCX_API/FCX-API.asmx"
+        api.Discover()
         ProcessDonations()
 
-      
 
-       
+
+
+
     End Sub
     Private Function ZeroFill(ByVal number As Integer, ByVal len As Integer) As String
         If number.ToString.Length > len Then
@@ -62,6 +67,16 @@ Module Module1
 
     Private Sub ProcessDonations()
         Dim d As New DonationDataContext
+        Try
+            api_key = New System.Guid(d.AP_StaffBroker_Settings.Where(Function(x) x.PortalId = 0 And x.SettingName = "Cart_Pump_Key").Select(Function(x) x.SettingValue).First)
+
+        Catch ex As Exception
+            Console.Write("No Key!")
+            Return
+        End Try
+        
+
+
 
         'generate the next batch number
         Dim nr = d.AP_StaffBroker_Settings.Where(Function(x) x.PortalId = 0 And x.SettingName = "NextBatchNo")
@@ -209,7 +224,7 @@ Module Module1
             End If
         Else
             Console.Write("nothing to do")
-            Console.ReadLine()
+
         End If
 
     End Sub

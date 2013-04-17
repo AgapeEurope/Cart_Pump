@@ -117,13 +117,13 @@
         <classShapeMoniker Id="3704c158-693c-4f40-892d-3ec37b6900ed" />
       </nodes>
     </associationConnector>
-    <classShape Id="a92cb252-9b7e-4a0c-a9e5-9bf61855ebc8" absoluteBounds="4.875, 0.625, 2, 4.2708154296875">
+    <classShape Id="a92cb252-9b7e-4a0c-a9e5-9bf61855ebc8" absoluteBounds="4.875, 0.625, 2, 3.3093082682291666">
       <DataClassMoniker Name="/DonationDataContext/Agape_Give_BankTransfer" />
       <nestedChildShapes>
-        <elementListCompartment Id="780b4570-4e0a-477b-bde5-6bef1cbd15fe" absoluteBounds="4.8900000000000006, 1.085, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="780b4570-4e0a-477b-bde5-6bef1cbd15fe" absoluteBounds="4.8900000000000006, 1.085, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.375 : 14.6771061197917); (6.84375 : 14.6771061197917); (6.84375 : 4.8958154296875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(10.375 : 14.6771061197917); (6.84375 : 14.6771061197917); (6.84375 : 3.93430826822917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DonationDataContext/User/User_Agape_Give_BankTransfer" />
       <nodes>
         <classShapeMoniker Id="ba102d80-68da-492c-a602-c988f30ab4d3" />
